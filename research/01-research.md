@@ -1,0 +1,198 @@
+---
+slug: research
+title: AI Research Papers
+tags: [ ai, ml, cv, nlp, research ]
+---
+
+### Summary
+
+| Project Name                             | Purpose                                                                | Type                     | Diffusers? | ComfyUI |
+|------------------------------------------|------------------------------------------------------------------------|--------------------------|------------|---------|
+| Instant Family                           | Identity-picture to picture                                            | `ID Prompt`              |            |         |
+| Stylus Diffusion                         | Selects LoRAs from a database                                          | `Meta-System`            |            |         |
+| Align Your Steps                         | Optimum scheduler; better images and better prompt adherence           | `Scheduler`              |            | ✅       |
+| High Diffusion                           | Faster inference, better images at 2048px and 4096px                   | `Model-Modifier`         | ✅          | ✅       |
+| Hyper-SD                                 | Only 1 - 8 steps in the scheduler; uses TCD                            | `LoRA` `Scheduler`       | ✅          | ✅       |
+| VideoGigaGAN                             | Upscale videos                                                         | `Model`                  |            |         |
+| PanFusion                                | 360-degree panoramic image generation                                  | `Model`                  |            |         |
+| TCD (Trajectory Consistent Distillation) | Turbo Scheduler                                                        | `Scheduler`              | ✅          | ✅       |
+| Stable Diffusion 3                       | Text-To-Image Model                                                    | `Model`                  |            |         |
+| PhotoMaker                               | Uses its own model to process images; adds identity to existing models | `Model` `Model-Modifier` |            |         |
+| GigaGAN                                  | Text to image                                                          | `Model`                  |            |         |
+
+---
+
+### 📌 Instant Family
+
+Specify faces of people, and generate images with all of their faces present.
+
+- May 2024
+- Authors: Chanran Kim, Jeongin Lee, Shichang Joung, Bongmo Kim, Yeul-Min Baek
+- Paper: https://arxiv.org/abs/2404.19427
+- Code: no weights or code available yet; coming soon?
+
+### 📌 Story Diffusion
+
+Some attention-technique to generate consistent characters somehow?
+
+- May 2024
+- Authors: ByteDance
+- Paper: https://arxiv.org/abs/2405.01434
+- Info: https://storydiffusion.github.io/
+- Code: I’m not sure how this works
+    - https://github.com/HVision-NKU/StoryDiffusion
+
+### 📌 Stylus
+
+When the user types a prompt, this meta-expert-system selects from a list of available LoRAs to help it
+better fulfill the user’s request. It automatically mixes these in.
+
+- Authors: Carnegie Mellon, UC Berkley, Google Deepmind
+- Info and
+  paper: [https://stylus-diffusion.github.io](https://stylus-diffusion.github.io/?utm_source=sinkin.beehiiv.com&utm_medium=newsletter&utm_campaign=china-s-sora-competitor-midjourney-ceo-s-prediction-instantfamily-storydiffusion-stylus)
+- Code: Nothing yet
+    - https://github.com/stylus-diffusion/stylus
+
+### 📌 Align Your Steps
+
+Previously, denoise-scheduling in diffusion-models was all tribal-knowledge of “this worked good
+enough for me”, but in this paper Nvidia does the first mathematical / theoretical analysis to find the optimal
+denoising schedule for each model. Sticking to this schedule results in better-quality images that also better adhere to
+text-prompts. Numerical-vectors are provided for SD1, SDXL, SVD, and DeepFloyd-IF models.
+
+- April 2024
+- Authors: Nvidia
+-
+
+Info: https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/?utm_source=sinkin.beehiiv.com&utm_medium=newsletter&utm_campaign=hidiffusion-videogigagan-align-your-steps-hyper-sd-predicting-political-views
+
+- Library used: none
+- Code: none
+- ComfyUI implementations: this was built into ComfyUI core as an array of numbers, produced by an ‘align your steps’
+  node.
+    - https://github.com/comfyanonymous/ComfyUI/blob/10fcd09f4af5de62aa662dab03320cfca46b0edb/comfy_extras/nodes_align_your_steps.py
+
+### 📌 HiDiffusion
+
+A technique that modifies existing stable-diffusion models, allowing them to generate higher-resolution
+images (2048px or 4096px) directly, without the duplication-artifacts introduced by tiling. Basically, the diffusion
+model is able to attend to all pixels of the image at the same time, even at higher resolution. It also provides a
+noteable speed improvement.
+
+- April 2024
+- Authors: MEGVII Technology
+- Info and
+  paper: [https://hidiffusion.github.io/](https://hidiffusion.github.io/?utm_source=sinkin.beehiiv.com&utm_medium=newsletter&utm_campaign=hidiffusion-videogigagan-align-your-steps-hyper-sd-predicting-political-views)
+- Library used: pypi-package for diffusers
+- Code: takes a diffuser’s pipeline class and modifies it with one line of code. It works on SDXL, SDXL Turbo, SD2, and
+  SD1.
+    - https://github.com/megvii-research/HiDiffusion
+- ComfyUI implementations:
+    - https://github.com/florestefano1975/ComfyUI-HiDiffusion
+    - https://github.com/blepping/comfyui_jankhidiffusion
+    - https://medium.com/diffusion-images/hidiffusion-in-comfyui-higher-resolution-and-faster-generations-with-stable-diffusion-28e93ec91a07
+
+### 📌 Hyper-SD
+
+This is provided as LoRA add-on for SD1 and SDXL; it enables these models to run in 1 - 8 steps, rather
+than a more conventional 20 - 25 steps, greatly reducing inference time. It compares well to SDXL-Turbo (1 step),
+SDXL-Lightning (1 step), and even SDXL-base itself with 50-steps.
+
+- April 2024
+- Authors: ByteDance
+- Info and Paper: https://hyper-sd.github.io/
+- Model Weights: https://huggingface.co/ByteDance/Hyper-SD/tree/main
+    - There’s a different LoRA for different number of steps, i.e., there are different models for 1, 2, 4, and 8 steps.
+- Library: easily implemented in diffusers; just load the LoRA, fuse them into the pipeline, then use the TCD scheduler.
+- ComfyUI implementations: since it’s just a LoRA, it doesn’t require any new code; you just need to use the TCD (
+  Trajectory Consistent Distillation) custom-node as a scheduler, and adjust the eta-parameter:
+    - https://github.com/JettHu/ComfyUI-TCD
+
+### 📌 VideoGigaGAN
+
+A video-super-resolution model from Adobe that upscales videos from 128px to 1024 px.
+
+- April 2024
+- Authors: Adobe
+- Info and paper: https://videogigagan.github.io/
+- Code: lol lol; bro Adobe would never
+- Code: being recreated by lucidrains:
+
+https://github.com/lucidrains/videogigagan-pytorch
+
+### 📌 PanFusion
+
+360-degree panoramic image generation, trained on Matterport 3D data. Works well for generating Skyboxes.
+This is apparently an improvement over the previous method called MV Diffusion from July
+2023 (https://github.com/Tangshitao/MVDiffusion). This has its own 8.5 GB model.
+
+- April 2024
+- Authors: ???
+- Info and paper: https://chengzhag.github.io/publication/panfusion/
+- Code: https://github.com/chengzhag/PanFusion
+- Library: uses diffusers as a dependency, but is not part of the diffusers library yet. It has its own custom-made
+  python scripts.
+- ComfyUI implementation:
+    - None that I know of yet
+- Note: there is also an older paper, Feb 2023, that tries panoramic image generation that was included in the diffusers
+  library https://huggingface.co/papers/2302.08113
+
+### 📌 Trajectory Consistent Distillation
+
+A new scheduler used with turbo-diffusion models. Replaces the LCM (latent consistency model) scheduler.
+
+- March 2024
+- Authors: Jianbin Zheng, Southern China University of Technology
+- Paper: https://arxiv.org/abs/2402.19159
+- Info: https://mhh0318.github.io/tcd/
+- Code: implemented into the diffusers library as an alternative scheduler.
+    - https://github.com/jabir-zheng/TCD
+- ComfyUI implementations:
+    - https://github.com/JettHu/ComfyUI-TCD
+    - https://github.com/dfl/comfyui-tcd-scheduler
+
+### 📌 CTM (Consistent Trajectory Models)
+
+Alleges TCD plagiarized their work. Same thing.
+
+- March 2024
+- Authors: Sony AI, Carnegie Mellon
+- Info: https://consistencytrajectorymodel.github.io/CTM/
+
+### 📌 Stable Diffusion 3
+
+New model from Stability AI.
+
+- Authors: Stability AI
+- Paper: https://arxiv.org/abs/2403.03206
+- Code and weights: coming eventually
+
+### 📌 PhotoMaker
+
+Provide identity-preserving reference-images.
+
+- December 2023
+- Authors: TencentARC
+- Paper: https://arxiv.org/abs/2312.04461
+- Library: custom diffusers pipeline; just import `PhotoMakerStableDiffusionXLPipeline` and run it.
+- Code: https://github.com/TencentARC/PhotoMaker
+- Model Weights: https://huggingface.co/TencentARC/PhotoMaker/tree/main
+- ComfyUI implementation:
+    - Officially added to
+      core: https://github.com/comfyanonymous/ComfyUI/commit/d1533d9c0f1dde192f738ef1b745b15f49f41e02
+
+### 📌 GigaGAN
+
+Text-to-image GAN that operates on a latent space; it has fast inference time (it’s not using a multi-step
+diffusers), and a smooth latent space, allowing for interpolation between images and styles.
+
+- March 2023
+- Authors: Adobe
+- Paper, March 2023: https://arxiv.org/abs/2303.05511
+- Code: Adobe obviously they never released any code / model-weights (dicks), but an independent dev reproduced their
+  architecture in PyTorch:
+
+https://github.com/lucidrains/gigagan-pytorch
+
+This repo was abandoned in late-2023. Idk if anyone actually ever trained a version of this model and used it? I don’t
+think Adobe themselves ever deployed a production version of this either, despite the hype.
