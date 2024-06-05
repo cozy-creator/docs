@@ -103,7 +103,7 @@ const config: Config = {
                     items: [
                         {
                             label: 'Research',
-                            to: '/research',
+                            to: '/research/research',
                         },
                         {
                             label: 'GitHub',
