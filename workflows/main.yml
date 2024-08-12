@@ -1,0 +1,29 @@
+name: Sync Pages to Void Tech Repository
+"on":
+  push:
+    paths:
+      - pages/**
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repository
+        uses: actions/checkout@v2
+      - name: Clone Target Repository
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        run: >
+          git clone https://kinyichukwu:${{ secrets.API_TOKEN_GITHUB }}@github.com/cozy-creator/void-tech.git
+
+          cd void-tech
+
+          git checkout dev
+      - name: Copy Files to Target Repository Folder
+        run: |
+          cp -R pages/* void-tech/src/pages/docs/
+          cd void-tech
+          git add .
+          git config user.name “kinyichukwu”
+          git config user.email "kinyichukwuose@gmail.com"
+          git commit -m "Sync pages"
+          git push origin dev
