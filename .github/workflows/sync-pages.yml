@@ -1,6 +1,8 @@
 name: Sync Pages to Void Tech Repository
-"on":
+on:
   push:
+    branches:
+      - master
     paths:
       - pages/**
   workflow_dispatch:
