@@ -15,7 +15,7 @@ jobs:
       - name: Clone Target Repository
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        run: >
+        run: |
           git clone https://github.com/cozy-creator/void-tech.git
           cd void-tech
           git checkout dev
@@ -30,4 +30,4 @@ jobs:
           git config user.email "action@github.com"
           git add .
           git commit -m "Sync pages"
-          git push https://${PAT}@github.com/cozy-creator/void-tech.git dev
+          git push https://${API_TOKEN_GITHUB}@github.com/cozy-creator/void-tech.git dev
