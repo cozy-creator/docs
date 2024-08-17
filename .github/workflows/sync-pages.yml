@@ -3,6 +3,8 @@ name: Sync Pages to Void Tech Repository
   push:
     paths:
       - pages/**
+  workflow_dispatch:
+
 jobs:
   sync:
     runs-on: ubuntu-latest
