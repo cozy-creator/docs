@@ -22,7 +22,7 @@ jobs:
 
       - name: Copy Files to Target Repository Folder
         env:
-          PAT: ${{ secrets.API_TOKEN_GITHUB }}
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
           cp -R pages/* void-tech/src/pages/docs/
           cd void-tech
