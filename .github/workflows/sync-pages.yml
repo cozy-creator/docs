@@ -16,7 +16,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
-          git clone https://github.com/cozy-creator/void-tech.git
+          git clone https://${API_TOKEN_GITHUB}@github.com/cozy-creator/void-tech.git
           cd void-tech
           git checkout dev
 
