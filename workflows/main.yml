@@ -2,7 +2,7 @@ name: Sync Pages to Void Tech Repository
 "on":
   push:
     paths:
-      - pages/**
+      - app/**
 jobs:
   sync:
     runs-on: ubuntu-latest

@@ -1,4 +1,3 @@
-
 ### Configuration
 
 Cozy Creator supports multiple configuration formats:
@@ -19,18 +18,15 @@ Environment variables must have the `COZY_` prefix added in order to prevent col
 
 See our .env.example file for all available environment variables. Example:
 
-```
-cozy run --env-file="~/.cozy-creator/.env"
-```
+``` cozy run --env-file="~/.cozy-creator/.env" ```
 
 #### Yaml Config File
 
 The yaml config file is used to set configuration variables. It is loaded from the `~/.cozy-creator` directory unless you specify a different location using the `--config-file` flag.
 
 Example:
-```
-cozy run --config-file="~/.cozy-creator/config.yaml"
-```
+
+``` cozy run --config-file="~/.cozy-creator/config.yaml" ```
 
 #### Secrets Directory
 
@@ -38,6 +34,6 @@ The secrets directory is used to load secrets from a directory. It is useful for
 
 For the secrets-dir, use:
 
-```sh
-cozy run --secrets-dir="/run/secrets"
-```
+```sh cozy run --secrets-dir="/run/secrets" ```
+
+export default ({ children }) => <div className="prose dark">{children}</div>;
