@@ -9,8 +9,6 @@ import { navigations } from "@/constants";
 import * as RouteData from "@/app/_meta.json";
 import { FaDiscord, FaGithub } from "react-icons/fa";
 
-console.log(RouteData[0], "route data");
-
 const SideBar = ({ className }: { className?: string }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const { docs } = useDocs();
@@ -130,7 +128,11 @@ const SideBar = ({ className }: { className?: string }) => {
       <ul className="space-y-2 mb-auto">
         {RouteData.map((_route) => {
           return (
-            <Link href={_route.path} className={linkClass(_route.path)}>
+            <Link
+              href={_route.path}
+              key={_route.path}
+              className={linkClass(_route.path)}
+            >
               {_route.title}
             </Link>
           );

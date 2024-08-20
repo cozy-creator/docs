@@ -115,6 +115,33 @@ export const DocsProvider: React.FC<DocsProviderProps> = ({ children }) => {
       ],
       [],
     ],
+    [
+      [
+        {
+          title: "### Installation",
+          description: "",
+          path: "/installation#Installation",
+        },
+      ],
+    ],
+    [
+      [
+        {
+          title: "### Running Gen-Server Locally",
+          description: "",
+          path: "/running#Running-Gen-Server-Locally",
+        },
+      ],
+    ],
+    [
+      [
+        {
+          title: "### Configuration",
+          description: "",
+          path: "/configuration#Configuration",
+        },
+      ],
+    ],
   ]);
 
   const fetchDocs = async () => {
