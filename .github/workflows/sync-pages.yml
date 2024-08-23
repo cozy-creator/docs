@@ -26,8 +26,9 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
-          cp -R docs/* void-tech/src/pages/docs/
-          cd void-tech
+          find void-tech/src/pages/docs -type f ! -name '[[...slug]].js' ! -name 'README.md' -delete
+          rsync -av docs/ void-tech/src/pages/docs/
+          cd void-tech/src/pages/docs
           git config user.name "GitHub Action"
           git config user.email "action@github.com"
           git add .
