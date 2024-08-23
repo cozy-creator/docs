@@ -1,10 +1,10 @@
-name: Sync Pages to Void Tech Repository
+name: Sync Docs to Void Tech Repository
 on:
   push:
     branches:
       - master
     paths:
-      - pages/**
+      - docs/**
   workflow_dispatch:
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
-          cp -R pages/* void-tech/src/pages/docs/
+          cp -R docs/* void-tech/src/pages/docs/
           cd void-tech
           git config user.name "GitHub Action"
           git config user.email "action@github.com"

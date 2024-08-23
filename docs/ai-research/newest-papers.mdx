@@ -1,6 +1,6 @@
 ## Summary
 
-| Project Name                                 | Purpose                                                                | Type                     | Diffusers? | ComfyUI |
+| Project Name                                 | Purpose                                                                | Type                     | Diffusers? | ComfyUI? |
 | -------------------------------------------- | ---------------------------------------------------------------------- | ------------------------ | ---------- | ------- |
 | **Instant Family**                           | Identity-picture to picture                                            | `ID Prompt`              |            |         |
 | **Stylus Diffusion**                         | Selects LoRAs from a database                                          | `Meta-System`            |            |         |
@@ -16,7 +16,7 @@
 
 ---
 
-### 📌 Instant Family
+### Instant Family
 
 **Description**: Specify faces of people, and generate images with all of their faces present.
 
@@ -27,7 +27,7 @@
 
 ---
 
-### 📌 Story Diffusion
+### Story Diffusion
 
 **Description**: Some attention-technique to generate consistent characters somehow?
 
@@ -35,14 +35,14 @@
 - **Authors**: ByteDance
 - **Paper**: [https://arxiv.org/abs/2405.01434](https://arxiv.org/abs/2405.01434)
 - **Info**: [https://storydiffusion.github.io/](https://storydiffusion.github.io/)
-- **Code**: I’m not sure how this works
+- **Code**: I'm not sure how this works
   - [https://github.com/HVision-NKU/StoryDiffusion](https://github.com/HVision-NKU/StoryDiffusion)
 
 ---
 
-### 📌 Stylus
+### Stylus
 
-**Description**: When the user types a prompt, this meta-expert-system selects from a list of available LoRAs to help it better fulfill the user’s request. It automatically mixes these in.
+**Description**: When the user types a prompt, this meta-expert-system selects from a list of available LoRAs to help it better fulfill the user's request. It automatically mixes these in.
 
 - **Authors**: Carnegie Mellon, UC Berkley, Google Deepmind
 - **Info and Paper**: [https://stylus-diffusion.github.io](https://stylus-diffusion.github.io)
@@ -51,9 +51,9 @@
 
 ---
 
-### 📌 Align Your Steps
+### Align Your Steps
 
-**Description**: Nvidia’s mathematical/theoretical analysis to find the optimal denoising schedule for diffusion models, resulting in better-quality images and prompt adherence.
+**Description**: Nvidia's mathematical/theoretical analysis to find the optimal denoising schedule for diffusion models, resulting in better-quality images and prompt adherence.
 
 - **Date**: April 2024
 - **Authors**: Nvidia
@@ -65,7 +65,7 @@
 
 ---
 
-### 📌 HiDiffusion
+### HiDiffusion
 
 **Description**: Modifies existing Stable Diffusion models to generate higher-resolution images (2048px or 4096px) directly, without duplication artifacts, and provides a speed improvement.
 
@@ -73,7 +73,7 @@
 - **Authors**: MEGVII Technology
 - **Info and Paper**: [https://hidiffusion.github.io/](https://hidiffusion.github.io/)
 - **Library Used**: Pypi-package for diffusers
-- **Code**: Takes a diffuser’s pipeline class and modifies it with one line of code. It works on SDXL, SDXL Turbo, SD2, and SD1.
+- **Code**: Takes a diffuser's pipeline class and modifies it with one line of code. It works on SDXL, SDXL Turbo, SD2, and SD1.
   - [https://github.com/megvii-research/HiDiffusion](https://github.com/megvii-research/HiDiffusion)
 - **ComfyUI Implementations**:
   - [https://github.com/florestefano1975/ComfyUI-HiDiffusion](https://github.com/florestefano1975/ComfyUI-HiDiffusion)
@@ -82,7 +82,7 @@
 
 ---
 
-### 📌 Hyper-SD
+### Hyper-SD
 
 **Description**: Provided as a LoRA add-on for SD1 and SDXL; enables these models to run in 1 - 8 steps, greatly reducing inference time.
 
@@ -96,7 +96,7 @@
 
 ---
 
-### 📌 VideoGigaGAN
+### VideoGigaGAN
 
 **Description**: A video-super-resolution model from Adobe that upscales videos from 128px to 1024px.
 
@@ -108,7 +108,7 @@
 
 ---
 
-### 📌 PanFusion
+### PanFusion
 
 **Description**: 360-degree panoramic image generation, trained on Matterport 3D data. Works well for generating Skyboxes.
 
@@ -122,7 +122,7 @@
 
 ---
 
-### 📌 Trajectory Consistent Distillation (TCD)
+### Trajectory Consistent Distillation (TCD)
 
 **Description**: A new scheduler used with turbo-diffusion models. Replaces the LCM (latent consistency model) scheduler.
 
