@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 
 export default function DocPage() {
   const router = useRouter()
-  const { slug } = router.query
+  let { slug } = router.query
 
   if (!slug || slug.length === 0) {
     slug = ['about'];
