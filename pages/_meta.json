@@ -1,4 +1,44 @@
-{
-  "index": "Introduction",
-  "research": "AI Research Paper"
-}
+[
+  {
+    "title": "Introduction",
+    "path": "/",
+    "filepath": "/docs",
+    "hasChildren": false,
+    "children": []
+  },
+  {
+    "title": "About",
+    "path": "/about",
+    "filepath": "/docs/about",
+    "hasChildren": false,
+    "children": []
+  },
+  {
+    "title": "AI Research",
+    "path": "/research",
+    "filepath": "/docs/research",
+    "hasChildren": false,
+    "children": []
+  },
+  {
+    "title": "Installation",
+    "path": "/installation",
+    "filepath": "/docs/installation",
+    "hasChildren": false,
+    "children": []
+  },
+  {
+    "title": "Running",
+    "path": "/running",
+    "filepath": "/docs/running",
+    "hasChildren": false,
+    "children": []
+  },
+  {
+    "title": "Configuration",
+    "path": "/configuration",
+    "filepath": "/docs/configuration",
+    "hasChildren": false,
+    "children": []
+  }
+]

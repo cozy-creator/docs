@@ -1,0 +1,164 @@
+### Cozy Creator
+
+Cozy Creator is a generative AI engine that allows you to create and run generative AI models on your own computer or in the cloud. It is designed to be easy to use and accessible to everyone, regardless of their technical expertise.
+
+This repository contains the source code for Cozy Creator, which includes the following packages:
+
+- **gen-server**: The core engine that runs the generative AI models.
+- **go-cozy**: A Go based API server for interacting with the gen-server.
+- **core_extensions**: A collection of extensions that add new functionality to the gen-server.
+- **web**: A web-based user interface for managing and running models and workflows.
+
+### Cozy CLI
+
+As mentioned above, cozy-creator has a CLI that can be used to run the gen-server. But it also has a few other useful commands, they include:
+
+- `cozy download` to download models onto the local machine (currently only supports HuggingFace models).
+- `cozy build-web` to build the web-bundle.
+
+To see the full list of available commands and flags, run:
+
+```
+cozy --help
+```
+
+and to see the full list of available flags for a specific command, run: … `cozy <COMMAND> --help` e.g:
+
+```
+cozy download --help
+```
+
+Note:
+
+- Underscores and dashes are equivalent for all commands and flags (e.g., `cozy build-web` and `cozy build_web` both work).
+- CLI variable-names are case-insensitive.
+- CLI variables can be specified in two ways:
+  - With an equals sign: `cozy run --port=3000`
+  - With a space: `cozy run --port 3000`
+- Objects can be specified as JSON strings, example:
+
+```sh
+cozy run s3='{"endpoint_url": "https://nyc3.digitaloceanspaces.com", "access_key": "DO00W9N964WMQC2MV6JK", "secret_key": "*******", "region_name": "nyc3", "bucket_name": "storage", "folder": "public"}'
+```
+
+### Building Cozy Creator For Distribution
+
+If you don't already have `build`, you can use pip to install it. Then navigate into the package directory you want to build, and run:
+
+- `python -m build` to build the repository.
+
+This will produce a `/dist` folder, containing a `.whl` (wheel) file and a `.tar.gz` file. The wheel file packages the library in a format that can be easily installed using pip, while the `.tar.gz` file contains the source code. To install the wheel file, use the command `pip install file_name.whl`.
+
+None of our packages currently use any C-APIs, and hence do not need to be recompiled for different environments.
+
+### Building for Docker
+
+#### Cozy Graph Editor
+
+To build the Cozy Creator Docker image, you need to build the the Cozy graph editor and place it inside of `/web/`, like `cozy-graph-editor-0.0.1.tgz`. This will be used as a dependency when building the front-end.
+
+The Cozy graph editor is a separate component that is not part of the Cozy Creator packages but you can find it [here](https://github.com/cozy-creator/graph-editor).
+
+You can clone and install it and then generate the `tgz` file by running:
+
+```
+yarn pack
+```
+
+You can also use any other package manager of your choice to install the graph editor if you prefer.
+
+#### Building the Image
+
+After you have built the Cozy graph editor and generated the `tgz` file, you can build the Docker image by running:
+
+```
+docker build -t cozycreator/gen-server:<VERSION> .
+```
+
+You can replace `<VERSION>` with the version of the Cozy Creator you want to build, e.g:
+
+```
+docker build -t cozycreator/gen-server:0.2.5 .
+```
+
+This will build the image and tag it as `cozycreator/gen-server:0.2.5`.
+
+> **Note:** If you're building the image on a Mac, you should add the --platform flag to the docker build command, like this: `docker build --platform=linux/amd64 -t cozycreator/gen-server:<VERSION> .`
+
+```sh
+docker build -t cozycreator/gen-server:0.2.5 .
+```
+
+### Running the Docker Container
+
+#### Running Locally
+
+After building the image, you can then proceed to run the Docker container.
+
+> **Note:** On windows, we add the `MSYS_NO_PATHCONV=1` flag because Windows command line doesn't know how to interpet paths. Note that in Docker, destination route paths must be absolute, so `~/.cozy-creator` won't work; you must use `/root/.cozy-creator` or whever your user's home directory is. This command below assumes the user is inside of the container is running as root:
+
+WSL2 version:
+In Windows, run `wsl` to enter Windows Subsystem for Linux, and then run:
+
+```sh
+docker run \
+  --env-file=/root/.cozy-creator/.env.local \
+  -p 8881:8881 -p 8888:8888 \
+  -v /root/.cozy-creator:/root/.cozy-creator \
+  -v /root/.cache/huggingface:/root/.cache/huggingface \
+  --gpus=all \
+  cozycreator/gen-server:0.2.5
+```
+
+Windows version:
+By default, docker runs in WSL2, and WSL2 is extremely slow at reading from the windows filesystem. Meaning that when you mount a windows directory into the docker container, the load-time for SDXL's 5.1GB Unet goes from 12 seconds -> 90 seconds.
+
+To fix this, you can access your WSL installation by typing in `\\wsl$` into the windows file explorer, and then navigating to your Linux installation (probably Ubuntu). Then in the root directory of your Ubuntu installation, place your models inside of /root/.cozy-creator/models, and then load from there. Your docker container will load models directly from your Linux filesystem, bypassing Windows and speeding up the process.
+
+```sh
+MSYS_NO_PATHCONV=1 docker run \
+  --env-file=.env.local \
+  -p 8881:8881 -p 8888:8888 \
+  -v ~/.cozy-creator:/root/.cozy-creator \
+  -v ~/.cache/huggingface:/root/.cache/huggingface \
+  --gpus=all \
+  cozycreator/gen-server:0.2.5
+```
+
+You can set environment variables manually by using `-e`; just remember to prepend them with `COZY_` first. When you specify an .env-file in Docker's run command, Docker inserts them as environment variables into the container, meaning all of the keys inside of your `.env` file should be prefixed with `COZY_` to have them work as expected. Some other flag-usage examples:
+
+```sh
+docker run \
+  -e COZY_HOST=0.0.0.0 \
+  -p 9000:9000 \
+  -e COZY_PORT=9000 \
+  -v "C:/git/ComfyUI/models":/models \
+  -e COZY_AUX_MODELS_PATHS='["/models"]' \
+  cozycreator/gen-server:0.2.2
+```
+
+#### Running on Runpod
+
+You can also run the Docker container on [Runpod](https://runpod.io/). To do this, you need to create a Runpod account and then follow the instructions [here](https://docs.runpod.io/pods/overview) to learn how to run a pod.
+
+When creating a pod, you will be asked to specify the pod's docker image name among other things. You can use the image name `cozycreator/gen-server:<VERSION>`, where `<VERSION>` is the version of the Cozy Creator you want to use.
+
+Once you have created the pod, runpod will automatically pull the image from Docker Hub and start the pod. You can then access the pod by visiting the URL provided by Runpod.
+
+### Hugging Face Hub Model Caching
+
+By default Cozy Creator stores models inside of `~/.cozy-creator/models`, but we also use Hugging Face Hub. If you have models downloaded from Hugging Face Hub by another program, we'll be able to load them in from your local filesystem when they're needed, and if they're not present we'll use Hugging Face Hub to download them.
+
+Hugging Face by default caches all models in `~/.cache/huggingface/hub`. You can change this default location by setting the environment variable `HF_HOME` to a new path. You can also set the environment variable flag `HF_HUB_OFFLINE=1` if you don't want to download models from the internet at all.
+
+See [here for more details.](https://huggingface.co/docs/transformers/main/en/installation#cache-setup)
+
+### Gen-Server Spec
+
+- Plugin system: add aiohttp routes, architecture-definitions, custom-nodes (frontend and backend), and widgets (frontend)
+- Searches filesystem for models (checkpoints) available and matches them to architecture definitions
+- Endpoint to receive inference requests (prebuilt workflows for now)
+- Location to save files to (locally or remotely)
+- Endpoint to serve files (not a great use for aiohttp but it should work)
+
+export default ({ children }) => <div className="prose dark">{children}</div>;

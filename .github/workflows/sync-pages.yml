@@ -20,7 +20,7 @@ jobs:
         run: |
           git clone https://${API_TOKEN_GITHUB}@github.com/cozy-creator/void-tech.git
           cd void-tech
-          git checkout docs-update 2>/dev/null || git checkout -b docs-update
+          git checkout docs-sync 2>/dev/null || git checkout -b docs-sync
 
       - name: Copy Files to Target Repository Folder
         env:
@@ -31,5 +31,5 @@ jobs:
           git config user.name "GitHub Action"
           git config user.email "action@github.com"
           git add .
-          git commit -m "Sync pages"
-          git push https://${API_TOKEN_GITHUB}@github.com/cozy-creator/void-tech.git docs-update
+          git commit -m "Sync Documentation"
+          git push https://${API_TOKEN_GITHUB}@github.com/cozy-creator/void-tech.git docs-sync
