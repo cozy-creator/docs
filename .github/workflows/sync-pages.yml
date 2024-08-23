@@ -27,6 +27,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
           find void-tech/src/pages/docs -type f ! -name '[[...slug]].js' ! -name 'README.md' -delete
+          find void-tech/src/pages/docs -mindepth 1 -type d -exec rm -rf {} +
           rsync -av docs/ void-tech/src/pages/docs/
           cd void-tech/src/pages/docs
           git config user.name "GitHub Action"
