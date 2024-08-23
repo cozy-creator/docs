@@ -1,44 +1,75 @@
 [
   {
-    "title": "Introduction",
+    "title": "About",
     "path": "/",
-    "filepath": "/docs",
+    "filepath": "/docs/",
     "hasChildren": false,
     "children": []
   },
   {
-    "title": "About",
-    "path": "/about",
-    "filepath": "/docs/about",
-    "hasChildren": false,
-    "children": []
+    "title": "Get Started",
+    "path": "/get-started",
+    "filepath": "/docs/get-started",
+    "hasChildren": true,
+    "children": [
+      {
+        "title": "Installation",
+        "path": "/get-started/installation",
+        "filepath": "/docs/get-started/installation",
+        "hasChildren": false,
+        "children": []
+      },
+      {
+        "title": "Run Locally",
+        "path": "/get-started/run-locally",
+        "filepath": "/docs/get-started/run-locally",
+        "hasChildren": false,
+        "children": []
+      },
+      {
+        "title": "Configuration",
+        "path": "/get-started/configuration",
+        "filepath": "/docs/get-started/configuration",
+        "hasChildren": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "title": "Deployment",
+    "path": "/deployment",
+    "filepath": "/docs/deployment",
+    "hasChildren": true,
+    "children": [
+      {
+        "title": "Docker",
+        "path": "/deployment/docker",
+        "filepath": "/docs/deployment/docker",
+        "hasChildren": false,
+        "children": []
+      },
+      {
+        "title": "Runpod",
+        "path": "/deployment/runpod",
+        "filepath": "/docs/deployment/runpod",
+        "hasChildren": false,
+        "children": []
+      }
+    ]
   },
   {
     "title": "AI Research",
-    "path": "/research",
-    "filepath": "/docs/research",
-    "hasChildren": false,
-    "children": []
-  },
-  {
-    "title": "Installation",
-    "path": "/installation",
-    "filepath": "/docs/installation",
-    "hasChildren": false,
-    "children": []
-  },
-  {
-    "title": "Running",
-    "path": "/running",
-    "filepath": "/docs/running",
-    "hasChildren": false,
-    "children": []
-  },
-  {
-    "title": "Configuration",
-    "path": "/configuration",
-    "filepath": "/docs/configuration",
-    "hasChildren": false,
-    "children": []
+    "path": "/ai-research",
+    "filepath": "/docs/ai-research",
+    "hasChildren": true,
+    "children": [
+      {
+        "title": "Latest Papers",
+        "path": "/ai-research/latest-papers",
+        "filepath": "/docs/ai-research/latest-papers",
+        "hasChildren": false,
+        "children": []
+      }
+    ]
   }
 ]
