@@ -6,7 +6,7 @@ export default function DocPage() {
   const { slug } = router.query
 
   if (!slug || slug.length === 0) {
-    slug = ['index'];
+    slug = ['about'];
   }
 
   const DocComponent = dynamic(() => import(`./${slug.join('/')}.mdx`), {
