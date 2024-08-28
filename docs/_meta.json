@@ -7,29 +7,44 @@
     "children": []
   },
   {
-    "title": "Get Started",
-    "path": "/get-started",
-    "filepath": "/docs/get-started",
+    "title": "Getting Started",
+    "path": "/getting-started",
+    "filepath": "/docs/getting-started",
     "hasChildren": true,
     "children": [
       {
         "title": "Installation",
-        "path": "/get-started/installation",
-        "filepath": "/docs/get-started/installation",
+        "path": "/getting-started/installation",
+        "filepath": "/docs/getting-started/installation",
         "hasChildren": false,
         "children": []
       },
       {
         "title": "Run Locally",
-        "path": "/get-started/run-locally",
-        "filepath": "/docs/get-started/run-locally",
+        "path": "/getting-started/run-locally",
+        "filepath": "/docs/getting-started/run-locally",
         "hasChildren": false,
         "children": []
       },
       {
         "title": "Configuration",
-        "path": "/get-started/configuration",
-        "filepath": "/docs/get-started/configuration",
+        "path": "/getting-started/configuration",
+        "filepath": "/docs/getting-started/configuration",
+        "hasChildren": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "title": "CLI",
+    "path": "/cli",
+    "filepath": "/docs/cli",
+    "hasChildren": true,
+    "children": [
+      {
+        "title": "Commands",
+        "path": "/cli/commands",
+        "filepath": "/docs/cli/commands",
         "hasChildren": false,
         "children": []
       }
@@ -52,6 +67,21 @@
         "title": "Runpod",
         "path": "/deployment/runpod",
         "filepath": "/docs/deployment/runpod",
+        "hasChildren": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "title": "Plugins",
+    "path": "/plugins",
+    "filepath": "/docs/plugins",
+    "hasChildren": true,
+    "children": [
+      {
+        "title": "Creating Plugins",
+        "path": "/plugins/creating-plugins",
+        "filepath": "/docs/plugins/creating-plugins",
         "hasChildren": false,
         "children": []
       }

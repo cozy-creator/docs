@@ -1,0 +1,124 @@
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs";
+import "@reach/tabs/styles.css";
+
+## Installation
+
+First, you'll need [Python 3.11](https://www.python.org/downloads/) or later.
+
+Optionally we recommend that you create a virtual environment first; this isolates cozy-creator's dependencies from your system-wide Python installations:
+
+1. Create a new virtual environment anywhere on your system:
+   ```
+   python -m venv venv
+   ```
+
+2. Activate the virtual environment:
+   - On Windows:
+     ```
+     venv\Scripts\activate
+     ```
+   - On macOS and Linux:
+     ```
+     source venv/bin/activate
+     ```
+
+3. Your terminal prompt should now show the name of your virtual environment, indicating it's active.
+
+We recommend that you have a GPU available on your system as well; Nvidia GPUs (CUDA) and Apple Silicon (MPS) are both supported. AMD GPU (ROCm) support is not guaranteed.
+
+Next, install [PyTorch](https://pytorch.org/get-started/locally/) into your virtual environment. Always use a GPU-enabled version of PyTorch when possible, for example:
+
+```
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+```
+
+Finally, run:
+
+``` 
+pip install cozy-creator
+```
+
+This will install our latest release of cozy-creator from [PyPi](https://pypi.org/project/cozy-creator/), along with all of its dependencies into your virtual environment.
+
+### Installing From Source
+
+Installing from source is useful if you're modifying the source code of cozy-creator, or if you want to use a version of cozy-creator that is not yet released.
+
+You'll need a JavaScript package manager installed on your system; we recommend [yarn](https://yarnpkg.com/getting-started/install), but [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and [pnpm](https://pnpm.io/installation) are also supported.
+
+Make sure you have the source-code available:
+
+```
+git clone https://github.com/cozy-creator/gen-server.git
+```
+
+Then navigate to the `python_packages` folder and run:
+
+```
+pip install -e .[plugins]
+```
+
+to install the gen-server and all plugins inside of `python_packages`, or run:
+
+```
+pip install -e .
+```
+
+to install the gen-server only.
+
+The `-e` flag is optional; it makes the installation "editable" in the sense that any changes to the source code will be used the next time you run it, without needing to reinstall.
+
+### Explanation of the Build Process
+
+Cozy Creator uses [Hatchling](https://hatchling.readthedocs.io/en/latest/) as the build-backend, along with a custom build-script. The Python installation proceeds as normal:
+
+- When doing a regular installation, the python source-code will be copied into `venv/Lib/site-packages/<package-name>` and will be used every time `cozy run` happens.
+
+- When doing an editable installation, pip places a `direct_url.json` file inside of the `site-packages` folder, which points to the original python-script files, rather than copying them. This is why any modifications to these files will be reflected the next time you run `cozy run`.
+
+We also build the CLI and webserver from source, using Golang:
+
+- If Golang is installed on your system, we will build a binary for your system from the Golang module `cozy-creator/gen-server` source code (located at root of the repo).
+
+- If Golang is not installed on your system, we will download the latest pre-built binary for your system from the [gen-server releases page](https://github.com/cozy-creator/gen-server/releases) and use that instead.
+
+We'll place this executable binary into your venv's `bin` folder, so that it is now in your system's PATH and can be used with the keyword `cozy`. The cozy-CLI tool is used to download models and start the gen-server.
+
+- We also use [vite](https://vitejs.dev/) to bundle the react components located in your `/web` folder. This creates a `/web/dist` folder containing the transpiled, minified, and bundled JavaScript files, which will be served by the webserver. This step requires a JavaScript package manager installed on your system.
+
+If you want to edit the frontend without having to reinstall every time, you can navigate to the `/web` folder and run:
+
+<Tabs>
+  <TabList>
+    <Tab>yarn</Tab>
+    <Tab>npm</Tab>
+    <Tab>pnpm</Tab>
+  </TabList>
+  <TabPanels>
+    <TabPanel>
+      <pre><code>yarn build</code></pre>
+    </TabPanel>
+    <TabPanel>
+      <pre><code>npm build</code></pre>
+    </TabPanel>
+    <TabPanel>
+      <pre><code>pnpm build</code></pre>
+    </TabPanel>
+  </TabPanels>
+</Tabs>
+
+This will bundle your changes into the `/web/dist` folder, which will be served by the web-server the next time you run `cozy run`.
+
+
+### Installing Plugins
+
+Cozy Creator plugins can be installed like any other Python package:
+
+```
+pip install <plugin-name>
+```
+
+This will install the plugin into your virtual environment; Cozy-Creator will automatically discover and load this plugin when you install cozy-creator (we use a custom post-install script), or when you run `cozy build` (which manually triggers the same post-install script).
+
+
+export default ({ children }) => <div className="prose dark">{children}</div>;
