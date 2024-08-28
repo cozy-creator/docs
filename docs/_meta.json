@@ -1,104 +1,82 @@
 [
   {
     "title": "About",
-    "path": "/",
-    "filepath": "/docs/about",
-    "hasChildren": false,
-    "children": []
+    "slug": "/",
+    "filepath": "/about"
   },
   {
     "title": "Getting Started",
-    "path": "/getting-started",
-    "filepath": "/docs/getting-started",
-    "hasChildren": true,
+    "slug": "/getting-started",
+    "filepath": "/getting-started",
+    "indexPage": "/getting-started/installation",
     "children": [
       {
         "title": "Installation",
-        "path": "/getting-started/installation",
-        "filepath": "/docs/getting-started/installation",
-        "hasChildren": false,
-        "children": []
+        "slug": "/getting-started/installation",
+        "filepath": "/getting-started/installation"
       },
       {
         "title": "Run Locally",
-        "path": "/getting-started/run-locally",
-        "filepath": "/docs/getting-started/run-locally",
-        "hasChildren": false,
-        "children": []
+        "slug": "/getting-started/run-locally",
+        "filepath": "/getting-started/run-locally"
       },
       {
         "title": "Configuration",
-        "path": "/getting-started/configuration",
-        "filepath": "/docs/getting-started/configuration",
-        "hasChildren": false,
-        "children": []
+        "slug": "/getting-started/configuration",
+        "filepath": "/getting-started/configuration"
       }
     ]
   },
   {
     "title": "CLI",
-    "path": "/cli",
-    "filepath": "/docs/cli",
-    "hasChildren": true,
+    "slug": "/cli",
+    "filepath": "/cli",
     "children": [
       {
         "title": "Commands",
-        "path": "/cli/commands",
-        "filepath": "/docs/cli/commands",
-        "hasChildren": false,
-        "children": []
+        "slug": "/cli/commands",
+        "filepath": "/cli/commands"
       }
     ]
   },
   {
     "title": "Deployment",
-    "path": "/deployment",
-    "filepath": "/docs/deployment",
-    "hasChildren": true,
+    "slug": "/deployment",
+    "filepath": "/deployment",
     "children": [
       {
         "title": "Docker",
-        "path": "/deployment/docker",
-        "filepath": "/docs/deployment/docker",
-        "hasChildren": false,
-        "children": []
+        "slug": "/deployment/docker",
+        "filepath": "/deployment/docker"
       },
       {
         "title": "Runpod",
-        "path": "/deployment/runpod",
-        "filepath": "/docs/deployment/runpod",
-        "hasChildren": false,
-        "children": []
+        "slug": "/deployment/runpod",
+        "filepath": "/deployment/runpod"
       }
     ]
   },
   {
     "title": "Plugins",
-    "path": "/plugins",
-    "filepath": "/docs/plugins",
-    "hasChildren": true,
+    "slug": "/plugins",
+    "filepath": "/plugins",
     "children": [
       {
         "title": "Creating Plugins",
-        "path": "/plugins/creating-plugins",
-        "filepath": "/docs/plugins/creating-plugins",
-        "hasChildren": false,
-        "children": []
+        "slug": "/plugins/creating-plugins",
+        "filepath": "/plugins/creating-plugins"
       }
     ]
   },
   {
     "title": "AI Research",
-    "path": "/ai-research",
-    "filepath": "/docs/ai-research",
-    "hasChildren": true,
+    "slug": "/ai-research",
+    "filepath": "/ai-research",
     "children": [
       {
         "title": "Latest Papers",
-        "path": "/ai-research/latest-papers",
-        "filepath": "/docs/ai-research/latest-papers",
-        "hasChildren": false,
-        "children": []
+        "slug": "/ai-research/latest-papers",
+        "filepath": "/ai-research/latest-papers"
       }
     ]
   }
