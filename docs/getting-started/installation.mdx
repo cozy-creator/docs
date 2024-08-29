@@ -70,7 +70,7 @@ The `-e` flag is optional; it makes the installation "editable" in the sense tha
 
 ### Explanation of the Build Process
 
-Cozy Creator uses [Hatchling](https://hatchling.readthedocs.io/en/latest/) as the build-backend, along with a custom build-script. The Python installation proceeds as normal:
+Cozy Creator uses [Hatchling](https://github.com/pypa/hatch) as the build-backend, along with a custom build-script. The Python installation proceeds as normal:
 
 - When doing a regular installation, the python source-code will be copied into `venv/Lib/site-packages/<package-name>` and will be used every time `cozy run` happens.
 

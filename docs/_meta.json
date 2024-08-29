@@ -1,82 +1,68 @@
 [
   {
     "title": "About",
-    "slug": "/about",
-    "filepath": "/index"
+    "slug": "/"
   },
   {
     "title": "Getting Started",
     "slug": "/getting-started",
-    "filepath": "/getting-started",
     "indexPage": "/getting-started/installation",
     "children": [
       {
         "title": "Installation",
-        "slug": "/getting-started/installation",
-        "filepath": "/getting-started/installation"
+        "slug": "/getting-started/installation"
       },
       {
         "title": "Run Locally",
-        "slug": "/getting-started/run-locally",
-        "filepath": "/getting-started/run-locally"
+        "slug": "/getting-started/run-locally"
       },
       {
         "title": "Configuration",
-        "slug": "/getting-started/configuration",
-        "filepath": "/getting-started/configuration"
+        "slug": "/getting-started/configuration"
       }
     ]
   },
   {
     "title": "CLI",
     "slug": "/cli",
-    "filepath": "/cli",
     "children": [
       {
         "title": "Commands",
-        "slug": "/cli/commands",
-        "filepath": "/cli/commands"
+        "slug": "/cli/commands"
       }
     ]
   },
   {
     "title": "Deployment",
     "slug": "/deployment",
-    "filepath": "/deployment",
     "children": [
       {
         "title": "Docker",
-        "slug": "/deployment/docker",
-        "filepath": "/deployment/docker"
+        "slug": "/deployment/docker"
       },
       {
         "title": "Runpod",
-        "slug": "/deployment/runpod",
-        "filepath": "/deployment/runpod"
+        "slug": "/deployment/runpod"
       }
     ]
   },
   {
     "title": "Plugins",
     "slug": "/plugins",
-    "filepath": "/plugins",
     "children": [
       {
         "title": "Creating Plugins",
-        "slug": "/plugins/creating-plugins",
-        "filepath": "/plugins/creating-plugins"
+        "slug": "/plugins/creating-plugins"
       }
     ]
   },
   {
     "title": "AI Research",
     "slug": "/ai-research",
-    "filepath": "/ai-research",
     "children": [
       {
         "title": "Latest Papers",
-        "slug": "/ai-research/latest-papers",
-        "filepath": "/ai-research/latest-papers"
+        "slug": "/ai-research/latest-papers"
       }
     ]
   }
