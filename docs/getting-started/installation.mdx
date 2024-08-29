@@ -13,24 +13,41 @@ Optionally we recommend that you create a virtual environment first; this isolat
    ```
 
 2. Activate the virtual environment:
-   - On Windows:
-     ```
-     venv\Scripts\activate
-     ```
-   - On macOS and Linux:
-     ```
-     source venv/bin/activate
-     ```
+   <Tabs>
+     <TabList>
+       <Tab>Windows</Tab>
+       <Tab>macOS and Linux</Tab>
+     </TabList>
+     <TabPanels>
+       <TabPanel>
+         <pre><code>venv\Scripts\activate</code></pre>
+       </TabPanel>
+       <TabPanel>
+         <pre><code>source venv/bin/activate</code></pre>
+       </TabPanel>
+     </TabPanels>
+   </Tabs>
 
 3. Your terminal prompt should now show the name of your virtual environment, indicating it's active.
 
 We recommend that you have a GPU available on your system as well; Nvidia GPUs (CUDA) and Apple Silicon (MPS) are both supported. AMD GPU (ROCm) support is not guaranteed.
 
-Next, install [PyTorch](https://pytorch.org/get-started/locally/) into your virtual environment. Always use a GPU-enabled version of PyTorch when possible, for example:
+Next, install [PyTorch](https://pytorch.org/get-started/locally/) into your virtual environment. Always use a GPU-enabled version of PyTorch when possible:
 
-```
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
-```
+<Tabs>
+  <TabList>
+    <Tab>Windows and Linux</Tab>
+    <Tab>macOS</Tab>
+  </TabList>
+  <TabPanels>
+    <TabPanel>
+      <pre><code>pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124</code></pre>
+    </TabPanel>
+    <TabPanel>
+      <pre><code>pip3 install torch torchvision torchaudio</code></pre>
+    </TabPanel>
+  </TabPanels>
+</Tabs>
 
 Finally, run:
 
@@ -52,19 +69,17 @@ Make sure you have the source-code available:
 git clone https://github.com/cozy-creator/gen-server.git
 ```
 
-Then navigate to the `python_packages` folder and run:
+Then navigate to the `python_packages` folder. In order to install the gen-server and all plugins, run:
 
 ```
 pip install -e .[plugins]
 ```
 
-to install the gen-server and all plugins inside of `python_packages`, or run:
+Or, to install the gen-server only:
 
 ```
 pip install -e .
 ```
-
-to install the gen-server only.
 
 The `-e` flag is optional; it makes the installation "editable" in the sense that any changes to the source code will be used the next time you run it, without needing to reinstall.
 
