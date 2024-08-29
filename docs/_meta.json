@@ -1,8 +1,8 @@
 [
   {
     "title": "About",
-    "slug": "/",
-    "filepath": "/about"
+    "slug": "/about",
+    "filepath": "/index"
   },
   {
     "title": "Getting Started",
